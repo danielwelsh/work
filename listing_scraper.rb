@@ -71,6 +71,14 @@ class ListingScraper
     @args[format_sym(left_column[0].children[1].children.children[0].text).to_sym] = (left_column[0].children[1].children.children[1].text).downcase
   end
 
+  def community
+    left_column = ''
+    left_column = @doc.css("div[class='propertyDetailsComponents']")
+    left_column = left_column.css("div[id='detailsList']")
+    left_column = left_column.css("ul[class='leftColumn']")
+    @args[format_sym(left_column[0].children[3].children.children[0].text).to_sym] = (left_column[0].children[3].children.children[1].text).downcase
+  end
+
 
 private
   def remove_colon(string)

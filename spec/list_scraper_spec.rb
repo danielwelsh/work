@@ -48,4 +48,9 @@ describe ListingScraper do
     expect(scraper.args[:heating]).to eq('baseboard, hot water')
   end
 
+  it 'gets the community' do
+    scraper.community
+    expect(scraper.args[:community]).to eq('downtown_edmo')
+  end
+
 end
