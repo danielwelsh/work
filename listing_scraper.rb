@@ -142,6 +142,29 @@ class ListingScraper
     @args[:listing_agent] = agent
   end
 
+  def room_details
+    rows = @doc.css("div[class='roomsSection desktop_only']")
+    rows = rows.css('tr')
+
+    rows_info = []
+    rows.each_with_index do |row, index|
+      details = {}
+      next if index == 0
+      if row.children[1].text == ''
+        #This will return the previous selection
+        @proper_level
+      else
+        @proper_level = row.children[1].text
+      end
+
+      details[:level] = @proper_level
+      details[:room_name] = row.children[3].text
+      details[:dimension] = row.children[5].text
+      rows_info << details
+    end
+    @args[:room_details] = rows_info
+  end
+
 
 private
   def remove_colon(string)

@@ -83,14 +83,19 @@ describe ListingScraper do
   #   expect(scraper.args[:roofing]).to eq('tar & gravel')
   # end
 
-  it 'gets the property description' do
-    scraper.property_description
-    expect(scraper.args[:property_description]).to include('WHAT A DEAL')
-  end
+  # it 'gets the property description' do
+  #   scraper.property_description
+  #   expect(scraper.args[:property_description]).to include('WHAT A DEAL')
+  # end
 
-  it 'gets the listing agent' do
-    scraper.listing_agent
-    expect(scraper.args[:listing_agent]).to eq('Listing courtesy of Jakie Ng~RE/MAX RIVER CITY')
+  # it 'gets the listing agent' do
+  #   scraper.listing_agent
+  #   expect(scraper.args[:listing_agent]).to eq('Listing courtesy of Jakie Ng~RE/MAX RIVER CITY')
+  # end
+
+  it 'gets all the room details' do
+    scraper.room_details
+    expect(scraper.args[:room_details]).to be_a(Array)
   end
 
 
