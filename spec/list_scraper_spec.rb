@@ -23,5 +23,9 @@ describe ListingScraper do
     expect(scraper.args[:living_space]).to eq(1324)
   end
 
+  it 'gets the property status' do
+    scraper.status
+    expect(scraper.args[:status]).to eq("for sale/active")
+  end
 
 end
