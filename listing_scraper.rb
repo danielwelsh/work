@@ -2,6 +2,8 @@ require_relative 'house'
 require 'nokogiri'
 require 'open-uri'
 
+
+# https://www.remax.ca/ab/edmonton-real-estate/na-1902-9923-103-street-na-wp_id167819998-lst/
 class ListingScraper
   attr_reader :args
 
