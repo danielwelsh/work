@@ -63,4 +63,31 @@ describe ListingScraper do
   #   expect(scraper.args[:balcony]).to eq(true)
   # end
 
+  # it 'gets the basement' do
+  #   scraper.basement
+  #   expect(scraper.args[:basement]).to eq('no basement, none')
+  # end
+
+  # it 'gets the exterior' do
+  #   scraper.exterior
+  #   expect(scraper.args[:exterior]).to eq('concrete')
+  # end
+
+  # it 'gets the flooring' do
+  #   scraper.flooring
+  #   expect(scraper.args[:flooring]).to eq('hardwood, linoleum')
+  # end
+
+  # it 'gets the roofing' do
+  #   scraper.roofing
+  #   expect(scraper.args[:roofing]).to eq('tar & gravel')
+  # end
+
+  it 'gets the property description' do
+    p scraper.property_description
+    expect(scraper.args[:property_description]).to be_a(String)
+  end
+
+
+
 end

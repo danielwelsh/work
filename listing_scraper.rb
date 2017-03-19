@@ -95,6 +95,45 @@ class ListingScraper
     @args[format_sym(left_column[0].children[7].children.children[0].text).to_sym] = yes_to_boolean((left_column[0].children[7].children.children[1].text).downcase)
   end
 
+  def basement
+    right_column = ''
+    right_column = @doc.css("div[class='propertyDetailsComponents']")
+    right_column = right_column.css("div[id='detailsList']")
+    right_column = right_column.css("ul[class='rightColumn']")
+    @args[format_sym(right_column[0].children[1].children.children[0].text).to_sym] = yes_to_boolean((right_column[0].children[1].children.children[1].text).downcase)
+  end
+
+  def exterior
+    right_column = ''
+    right_column = @doc.css("div[class='propertyDetailsComponents']")
+    right_column = right_column.css("div[id='detailsList']")
+    right_column = right_column.css("ul[class='rightColumn']")
+    @args[format_sym(right_column[0].children[3].children.children[0].text).to_sym] = yes_to_boolean((right_column[0].children[3].children.children[1].text).downcase)
+  end
+
+  def flooring
+    right_column = ''
+    right_column = @doc.css("div[class='propertyDetailsComponents']")
+    right_column = right_column.css("div[id='detailsList']")
+    right_column = right_column.css("ul[class='rightColumn']")
+    @args[format_sym(right_column[0].children[5].children.children[0].text).to_sym] = yes_to_boolean((right_column[0].children[5].children.children[1].text).downcase)
+  end
+
+  def roofing
+    right_column = ''
+    right_column = @doc.css("div[class='propertyDetailsComponents']")
+    right_column = right_column.css("div[id='detailsList']")
+    right_column = right_column.css("ul[class='rightColumn']")
+    @args[format_sym(right_column[0].children[7].children.children[0].text).to_sym] = (right_column[0].children[7].children.children[1].text).downcase
+  end
+
+  def property_description
+    property_description = ''
+    property_description = @doc.css("div[class='property-description-details']")
+    p property_description.css("p[class='descriptionText descText']").children.text
+    @args[format_sym((property_description.css("h4").text)).to_s] = format_sym(property_description.css("p[class='descriptionText descText']").children.text)
+  end
+
 
 private
   def remove_colon(string)
