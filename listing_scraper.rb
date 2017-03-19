@@ -79,6 +79,22 @@ class ListingScraper
     @args[format_sym(left_column[0].children[3].children.children[0].text).to_sym] = (left_column[0].children[3].children.children[1].text).downcase
   end
 
+  def amenities
+    left_column = ''
+    left_column = @doc.css("div[class='propertyDetailsComponents']")
+    left_column = left_column.css("div[id='detailsList']")
+    left_column = left_column.css("ul[class='leftColumn']")
+    @args[format_sym(left_column[0].children[5].children.children[0].text).to_sym] = (left_column[0].children[5].children.children[1].text).downcase
+  end
+
+  def balcony
+    left_column = ''
+    left_column = @doc.css("div[class='propertyDetailsComponents']")
+    left_column = left_column.css("div[id='detailsList']")
+    left_column = left_column.css("ul[class='leftColumn']")
+    @args[format_sym(left_column[0].children[7].children.children[0].text).to_sym] = yes_to_boolean((left_column[0].children[7].children.children[1].text).downcase)
+  end
+
 
 private
   def remove_colon(string)
@@ -93,6 +109,16 @@ private
   def format_sym(string)
     string = remove_colon(string)
     string = string.downcase.gsub(' ', '_')
+  end
+
+  def yes_to_boolean(string)
+    if string == 'yes'
+      true
+    elsif string == 'no'
+      false
+    else
+      string
+    end
   end
 
 end

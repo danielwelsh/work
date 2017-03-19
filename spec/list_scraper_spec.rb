@@ -43,14 +43,24 @@ describe ListingScraper do
   #   expect(scraper.args[:parking_type]).to eq("parkade; see remarks; stall; underground")
   # end
 
-  it 'gets the type of heating' do
-    scraper.heating
-    expect(scraper.args[:heating]).to eq('baseboard, hot water')
-  end
+  # it 'gets the type of heating' do
+  #   scraper.heating
+  #   expect(scraper.args[:heating]).to eq('baseboard, hot water')
+  # end
 
-  it 'gets the community' do
-    scraper.community
-    expect(scraper.args[:community]).to eq('downtown_edmo')
-  end
+  # it 'gets the community' do
+  #   scraper.community
+  #   expect(scraper.args[:community]).to eq('downtown_edmo')
+  # end
+
+  # it 'gets the amenities' do
+  #   scraper.amenities
+  #   expect(scraper.args[:amenities]).to eq('playground nearby, public transportation, ravine v')
+  # end
+
+  # it 'gets the balcony' do
+  #   scraper.balcony
+  #   expect(scraper.args[:balcony]).to eq(true)
+  # end
 
 end
