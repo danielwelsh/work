@@ -18,5 +18,10 @@ describe ListingScraper do
     expect(scraper.args[:bathrooms]).to eq(2)
   end
 
+  it "gets the living space" do
+    scraper.living_space
+    expect(scraper.args[:living_space]).to eq(1324)
+  end
+
 
 end

@@ -33,6 +33,12 @@ class ListingScraper
     @args[format_sym(left_column[0].children[5].children.children[0].text).to_sym] = format_sym(left_column[0].children[5].children.children[1].text).to_i
   end
 
+  def living_space
+    left_column = ''
+    left_column = @doc.css("ul[class='leftColumn']")
+    @args[format_sym(left_column[0].children[7].children.children[0].text).to_sym] = format_sym(left_column[0].children[7].children.children[1].text).to_i
+  end
+
 
 private
   def remove_colon(string)
