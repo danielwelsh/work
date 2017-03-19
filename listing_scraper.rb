@@ -22,6 +22,16 @@ class ListingScraper
     @args[:mls_listing_id] = match[1]
   end
 
+  def address
+    address = @doc.css('h2[class="propertyAddressHeader"]')
+    address = address.children.text
+    address = format_address(address)
+    @args[:street] = address[0]
+    @args[:city] = address[1]
+    @args[:province] = address[2]
+    @args[:postal_code] = address[3]
+  end
+
 
   def list_price
     price = @doc.css("div[class='sticky_price']").text

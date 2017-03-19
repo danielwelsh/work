@@ -103,9 +103,14 @@ describe ListingScraper do
   #   expect(scraper.args[:list_price]).to be(425000)
   # end
 
-  it 'gets the mls listing id' do
-    scraper.mls_listing_id
-    expect(scraper.args[:mls_listing_id]).to eq('E4054394')
+  # it 'gets the mls listing id' do
+  #   scraper.mls_listing_id
+  #   expect(scraper.args[:mls_listing_id]).to eq('E4054394')
+  # end
+
+  it 'gets address' do
+    scraper.address
+    expect(scraper.args[:city]).to eq('edmonton')
   end
 
 end

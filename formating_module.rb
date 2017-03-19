@@ -26,6 +26,13 @@ module ScrapingFormatting
     end
   end
 
+  def format_address(address)
+    address = address.split(',')
+    address.map! do |part|
+      part.downcase.strip
+    end
+    address
+  end
 
 
 end
