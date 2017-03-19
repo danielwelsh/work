@@ -16,6 +16,13 @@ class ListingScraper
     @main_doc = @doc.css("div[class='listing-details-box propertyDetails contentArea']")
   end
 
+  def mls_listing_id
+    id = @doc.css("span[class='MLS']").text
+    match = id.match(/[#]\s([A-Z]\d+)/)
+    @args[:mls_listing_id] = match[1]
+  end
+
+
   def list_price
     price = @doc.css("div[class='sticky_price']").text
     number = ''

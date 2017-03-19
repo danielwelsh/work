@@ -98,11 +98,14 @@ describe ListingScraper do
   #   expect(scraper.args[:room_details]).to be_a(Array)
   # end
 
-  it 'gets the list price' do
-    scraper.list_price
-    expect(scraper.args[:list_price]).to be(425000)
+  # it 'gets the list price' do
+  #   scraper.list_price
+  #   expect(scraper.args[:list_price]).to be(425000)
+  # end
+
+  it 'gets the mls listing id' do
+    scraper.mls_listing_id
+    expect(scraper.args[:mls_listing_id]).to eq('E4054394')
   end
-
-
 
 end
