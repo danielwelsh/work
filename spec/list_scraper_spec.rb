@@ -13,5 +13,10 @@ describe ListingScraper do
     expect(scraper.args[:bedrooms]).to eq(2)
   end
 
+  it "gets number of bathrooms" do
+    scraper.bathrooms
+    expect(scraper.args[:bathrooms]).to eq(2)
+  end
+
 
 end
