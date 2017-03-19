@@ -5,7 +5,12 @@ describe ListingScraper do
 
   it 'is able to get building type hash' do
     scraper.building_type
-    expect(scraper.args[:building_type]).to eq(:condo)
+    expect(scraper.args[:building_type]).to eq('condo')
+  end
+
+  it "is able to get number of bedrooms" do
+    scraper.bedrooms
+    expect(scraper.args[:bedrooms]).to eq(2)
   end
 
 

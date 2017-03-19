@@ -17,7 +17,15 @@ class ListingScraper
 
   def building_type
     left_column = @doc.css("ul[class='leftColumn']")
-    @args[format_sym(left_column[0].children[1].children.children[0].text).to_sym] = format_sym(left_column[0].children[1].children.children[1].text).to_sym
+    @args[format_sym(left_column[0].children[1].children.children[0].text).to_sym] = format_sym(left_column[0].children[1].children.children[1].text).to_s
+  end
+
+  def bedrooms
+    left_column = ''
+    left_column = @doc.css("ul[class='leftColumn']")
+    p left_column[0].children[3].children.children[0].text
+
+    @args[format_sym(left_column[0].children[3].children.children[0].text).to_sym] = format_sym(left_column[0].children[3].children.children[1].text).to_i
   end
 
 
