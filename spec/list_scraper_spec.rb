@@ -28,4 +28,9 @@ describe ListingScraper do
     expect(scraper.args[:status]).to eq("for sale/active")
   end
 
+  it 'gets the days on market' do
+    scraper.days_on_market
+    expect(scraper.args[:days_on_market]).to eq(6)
+  end
+
 end
