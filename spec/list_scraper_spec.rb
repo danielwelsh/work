@@ -30,7 +30,7 @@ describe ListingScraper do
 
   # it 'gets the days on market' do
   #   scraper.days_on_market
-  #   expect(scraper.args[:days_on_market]).to eq(6)
+  #   expect(scraper.args[:days_on_market]).to be_a(Integer)
   # end
 
   # it "gets the age of the building" do
@@ -84,8 +84,13 @@ describe ListingScraper do
   # end
 
   it 'gets the property description' do
-    p scraper.property_description
-    expect(scraper.args[:property_description]).to be_a(String)
+    scraper.property_description
+    expect(scraper.args[:property_description]).to include('WHAT A DEAL')
+  end
+
+  it 'gets the listing agent' do
+    scraper.listing_agent
+    expect(scraper.args[:listing_agent]).to eq('Listing courtesy of Jakie Ng~RE/MAX RIVER CITY')
   end
 
 

@@ -132,8 +132,14 @@ class ListingScraper
   def property_description
     property_description = ''
     property_description = @doc.css("div[class='property-description-details']")
-    p property_description.css("p[class='descriptionText descText']").children.text
-    @args[format_sym((property_description.css("h4").text)).to_s] = format_sym(property_description.css("p[class='descriptionText descText']").children.text)
+    @args[format_sym((property_description.css("h4").text)).to_sym] = property_description.css("p[class='descriptionText descText']").children.text
+  end
+
+  def listing_agent
+    agent = ''
+    agent = @doc.css("div[class='property-description-details']")
+    agent = agent.css("p[class='descriptionText courtesy']").children.text
+    @args[:listing_agent] = agent
   end
 
 
