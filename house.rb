@@ -1,8 +1,11 @@
 
 
 class House
+  attr_reader :listing_price, :listing_id, :building_type, :status, :bedrooms, :bathrooms, :living_space, :days_on_market, :amenities, :balcony, :age_of_building, :parking_type, :heating, :basement, :community, :exterior, :flooring, :roofing
 
   def initialize(args)
+    @listing_price = args.fetch(:listing_price, '')
+    @listing_id = args.fetch(:listing_id, '')
     @building_type = args.fetch(:building_type, '')
     @status = args.fetch(:status, '')
     @bedrooms = args.fetch(:bedrooms, '')
