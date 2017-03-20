@@ -33,11 +33,16 @@ class House
     @province             = args.fetch(:province, '')
     @postal_code          = args.fetch(:postal_code, '')
     @db = SQLite3::Database.new "housing.db"
+    #FIXME: Need to get DateTime working
     @initalize_time       = 'hello'
   end
 
   def is_this_a_house?
-    p @args
+    if @args.length > 10
+        return true
+    else
+        return false
+    end
   end
 
   def write_to_houses

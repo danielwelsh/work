@@ -12,4 +12,16 @@ describe House do
     expect(house.is_this_a_house?).to be(true)
   end
 
+  it 'returns true when we have a house' do
+
+  end
+
+  it 'returns false when we do not have a house' do
+    scraper2 = ListingScraper.new('https://www.google.com/')
+    scraper2.scrape
+    new_house = House.new(scraper2.args)
+    p new_house
+    expect(new_house.is_this_a_house?).to eq(false)
+  end
+
 end

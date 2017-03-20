@@ -234,6 +234,7 @@ class ListingScraper
   end
 
   def item_found?(input)
+    input = input.to_s
     if input == '[]' || input == '' || input == nil
       return false
     else
