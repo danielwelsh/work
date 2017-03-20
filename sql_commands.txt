@@ -1,0 +1,39 @@
+
+  CREATE TABLE houses (
+  id INTEGER PRIMARY KEY,
+  listing_price INT,
+  mls_listing_id VARCHAR(255),
+  building_type VARCHAR(255),
+  status VARCHAR(255),
+  bedrooms INT,
+  bathrooms INT,
+  living_space INT,
+  days_on_market INT,
+  amenities VARCHAR(255),
+  balcony VARCHAR(255),
+  age_of_building INT,
+  parking_type VARCHAR(255),
+  heating VARCHAR(255),
+  basement VARCHAR(255),
+  community VARCHAR(255),
+  exterior VARCHAR(255),
+  flooring VARCHAR(255),
+  roofing VARCHAR(255),
+  property_description VARCHAR(255),
+  listing_agent VARCHAR(255),
+  street VARCHAR(255),
+  city VARCHAR(255),
+  province VARCHAR(255),
+  postal_code VARCHAR(255),
+  created_at DATETIME,
+  modified_at DATETIME
+  );
+
+  CREATE TABLE rooms (
+  id INTEGER PRIMARY KEY,
+  id_houses INT,
+  level VARCHAR(255),
+  room_name VARCHAR(255),
+  dimensions VARCHAR(255),
+  FOREIGN KEY(id_houses) REFERENCES customers(id)
+  );
