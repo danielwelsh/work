@@ -5,6 +5,7 @@ class House
   attr_reader :listing_price, :listing_id, :building_type, :status, :bedrooms, :bathrooms, :living_space, :days_on_market, :amenities, :balcony, :age_of_building, :parking_type, :heating, :basement, :community, :exterior, :flooring, :roofing
 
   def initialize(args)
+    @args                 = args
     @listing_price        = args.fetch(:listing_price, '')
     @mls_listing_id       = args.fetch(:mls_listing_id, '')
     @building_type        = args.fetch(:building_type, '')
@@ -33,6 +34,10 @@ class House
     @postal_code          = args.fetch(:postal_code, '')
     @db = SQLite3::Database.new "housing.db"
     @initalize_time       = 'hello'
+  end
+
+  def is_this_a_house?
+    p @args
   end
 
   def write_to_houses

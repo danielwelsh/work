@@ -113,4 +113,10 @@ describe ListingScraper do
     expect(scraper.args[:city]).to eq('edmonton')
   end
 
+  it 'rejects input from a url that does not have what we want' do
+    scraper2 = ListingScraper.new('https://www.google.com/')
+    scraper2.address
+    expect(scraper.args[:address]).to eq(nil)
+  end
+
 end
