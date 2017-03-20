@@ -2,6 +2,7 @@ require_relative 'house'
 require 'nokogiri'
 require 'open-uri'
 require_relative 'formating_module'
+require 'sqlite3'
 
 
 # https://www.remax.ca/ab/edmonton-real-estate/na-1902-9923-103-street-na-wp_id167819998-lst/
@@ -186,6 +187,35 @@ class ListingScraper
       rows_info << details
     end
     @args[:room_details] = rows_info
+  end
+
+  def scrape
+    listing_price
+    mls_listing_id
+    building_type
+    status
+    bedrooms
+    bathrooms
+    living_space
+    days_on_market
+    amenities
+    balcony
+    age_of_building
+    parking_type
+    heating
+    basement
+    community
+    exterior
+    flooring
+    roofing
+    property_description
+    listing_agent
+    room_details
+    mls_listing_id
+    street
+    city
+    province
+    postal_code
   end
 
 end

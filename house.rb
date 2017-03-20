@@ -1,4 +1,4 @@
-require 'sqlite3'
+require "sqlite3"
 
 class House
   attr_reader :listing_price, :listing_id, :building_type, :status, :bedrooms, :bathrooms, :living_space, :days_on_market, :amenities, :balcony, :age_of_building, :parking_type, :heating, :basement, :community, :exterior, :flooring, :roofing
