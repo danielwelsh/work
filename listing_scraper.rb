@@ -4,7 +4,7 @@ require 'open-uri'
 require_relative 'formating_module'
 require 'sqlite3'
 
-
+#FIXME ADD BACK BOOLEAN TEST to basement exterior and flooring
 # https://www.remax.ca/ab/edmonton-real-estate/na-1902-9923-103-street-na-wp_id167819998-lst/
 class ListingScraper
   attr_reader :args
@@ -157,7 +157,7 @@ class ListingScraper
     if item_found?(right_column)
       right_column = right_column.css("div[id='detailsList']")
       right_column = right_column.css("ul[class='rightColumn']")
-      @args[format_sym(right_column[0].children[1].children.children[0].text).to_sym] = yes_to_boolean((right_column[0].children[1].children.children[1].text).downcase)
+      @args[format_sym(right_column[0].children[1].children.children[0].text).to_sym] = (right_column[0].children[1].children.children[1].text).downcase
     end
   end
 
@@ -167,7 +167,7 @@ class ListingScraper
     if item_found?(right_column)
       right_column = right_column.css("div[id='detailsList']")
       right_column = right_column.css("ul[class='rightColumn']")
-      @args[format_sym(right_column[0].children[3].children.children[0].text).to_sym] = yes_to_boolean((right_column[0].children[3].children.children[1].text).downcase)
+      @args[format_sym(right_column[0].children[3].children.children[0].text).to_sym] = (right_column[0].children[3].children.children[1].text).downcase
     end
   end
 
@@ -177,7 +177,7 @@ class ListingScraper
     if item_found?(right_column)
       right_column = right_column.css("div[id='detailsList']")
       right_column = right_column.css("ul[class='rightColumn']")
-      @args[format_sym(right_column[0].children[5].children.children[0].text).to_sym] = yes_to_boolean((right_column[0].children[5].children.children[1].text).downcase)
+      @args[format_sym(right_column[0].children[5].children.children[0].text).to_sym] = (right_column[0].children[5].children.children[1].text).downcase
     end
   end
 
