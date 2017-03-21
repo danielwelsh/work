@@ -1,8 +1,10 @@
 require "sqlite3"
 require "date"
+require_relative "room"
+
 
 class House
-  attr_reader :listing_price, :listing_id, :building_type, :status, :bedrooms, :bathrooms, :living_space, :days_on_market, :amenities, :balcony, :age_of_building, :parking_type, :heating, :basement, :community, :exterior, :flooring, :roofing
+  attr_reader :listing_price, :listing_id, :building_type, :status, :bedrooms, :bathrooms, :living_space, :days_on_market, :amenities, :balcony, :age_of_building, :parking_type, :heating, :basement, :community, :exterior, :flooring, :roofing, :rooms
 
   def initialize(args)
     @args                 = args
@@ -25,13 +27,14 @@ class House
     @flooring             = args.fetch(:flooring, '')
     @roofing              = args.fetch(:roofing, '')
     @property_description = args.fetch(:property_description, '')
+    #FIXME Clean the data for listing agent
     @listing_agent        = args.fetch(:listing_agent, '')
-    @room_details         = args.fetch(:room_details, '')
     @mls_listing_id       = args.fetch(:mls_listing_id, '')
     @street               = args.fetch(:street, '')
     @city                 = args.fetch(:city, '')
     @province             = args.fetch(:province, '')
     @postal_code          = args.fetch(:postal_code, '')
+    @rooms                = create_rooms
     @db = SQLite3::Database.new "housing.db"
     #FIXME: Need to get DateTime working
     @initalize_time       = 'hello'
@@ -50,6 +53,16 @@ class House
         @db.execute("INSERT INTO houses (id, list_price, mls_listing_id, building_type, status, bedrooms, bathrooms, living_space, days_on_market, amenities, balcony, age_of_building, parking_type, heating, basement, community, exterior, flooring, roofing, property_description, listing_agent, street, city, province, postal_code, created_at, modified_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [@id, @listing_price, @mls_listing_id, @building_type, @status, @bedrooms, @bathrooms, @living_space, @days_on_market, @amenities, @balcony, @age_of_building, @parking_type, @heating, @basement, @community, @exterior, @flooring, @roofing, @property_description, @listing_agent, @street, @city, @province, @postal_code, @initalize_time, @initalize_time])
     end
   end
+
+  def create_rooms
+    @rooms = []
+    if this_a_house?
+        @args[:room_details].each do |room|
+            @rooms << Room.new(room)
+        end
+    end
+  end
+
 
 
 
