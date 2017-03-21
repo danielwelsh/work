@@ -34,7 +34,7 @@ class House
     @city                 = args.fetch(:city, '')
     @province             = args.fetch(:province, '')
     @postal_code          = args.fetch(:postal_code, '')
-    @rooms                = create_rooms
+    # @rooms                = create_rooms
     @db = SQLite3::Database.new "housing.db"
     #FIXME: Need to get DateTime working
     @initalize_time       = 'hello'
@@ -50,18 +50,24 @@ class House
 
   def write_to_houses
     if this_a_house?
-        @db.execute("INSERT INTO houses (list_price, mls_listing_id, building_type, status, bedrooms, bathrooms, living_space, days_on_market, amenities, balcony, age_of_building, parking_type, heating, basement, community, exterior, flooring, roofing, property_description, listing_agent, street, city, province, postal_code, created_at, modified_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [@listing_price, @mls_listing_id, @building_type, @status, @bedrooms, @bathrooms, @living_space, @days_on_market, @amenities, @balcony, @age_of_building, @parking_type, @heating, @basement, @community, @exterior, @flooring, @roofing, @property_description, @listing_agent, @street, @city, @province, @postal_code, @initalize_time, @initalize_time])
+        @db.execute("INSERT INTO houses (id, list_price, mls_listing_id, building_type, status, bedrooms, bathrooms, living_space, days_on_market, amenities, balcony, age_of_building, parking_type, heating, basement, community, exterior, flooring, roofing, property_description, listing_agent, street, city, province, postal_code, created_at, modified_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [@id, @listing_price, @mls_listing_id, @building_type, @status, @bedrooms, @bathrooms, @living_space, @days_on_market, @amenities, @balcony, @age_of_building, @parking_type, @heating, @basement, @community, @exterior, @flooring, @roofing, @property_description, @listing_agent, @street, @city, @province, @postal_code, @initalize_time, @initalize_time])
     end
   end
 
-  def create_rooms
-    @rooms = []
-    if this_a_house?
-        @args[:room_details].each do |room|
-            @rooms << Room.new(room)
-        end
-    end
+  def read_from_database
+    @db.execute("select * from houses")
   end
+
+
+  #FIXME create rooms integration
+  # def create_rooms
+  #   @rooms = []
+  #   if this_a_house?
+  #       @args[:room_details].each do |room|
+  #           @rooms << Room.new(room)
+  #       end
+  #   end
+  # end
 
 
 
