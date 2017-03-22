@@ -2,6 +2,7 @@
   CREATE TABLE houses (
   id INTEGER PRIMARY KEY,
   list_price INT,
+  currency VARCHAR(255),
   mls_listing_id VARCHAR(255),
   building_type VARCHAR(255),
   status VARCHAR(255),

@@ -7,7 +7,7 @@ describe LinkCrawler do
 
   it 'collects links from a given page' do
     webpage.find_links
-    expect(webpage.found_links.length).to eq(3)
+    expect(webpage.found_links.length).to be > 1000
   end
 
 

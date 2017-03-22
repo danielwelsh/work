@@ -39,11 +39,12 @@ class ListingScraper
 
 
   def list_price
-    price = @doc.css("div[class='sticky_price']").text
+    price = @main_doc.css("div[itemprop='price']").text
     if item_found?(price)
       number = ''
       price.scan(/\d/) { |match| number += match }
       @args[:list_price] = number.to_i
+      @args[:currency] = 'CAD'
     end
   end
 
