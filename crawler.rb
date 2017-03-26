@@ -20,24 +20,33 @@ class LinkCrawler
     doc.each_with_index do |section, index|
       value = ''
       value = doc[index].children[1].attributes['href'].value
+
       if @found_links.include?(value)
         no_new_links = true
       else
         value = concatenate_prefix(value)
         @found_links << value
         write_link_to_database(value)
-        p read_from_database
       end
     end
 
     index += 1
+    return false if over_1000?
     find_links(@found_links[index], index, no_new_links)
   end
+
 
   def concatenate_prefix(link)
     link = 'https://www.remax.ca' + link
   end
 
+  def over_1000?
+    lines = read_from_database
+    return true if lines.length >= 1000
+    false
+  end
+
+#THIS SECTION WILL BE REWRITTEN ONCE ACTIVE RECORD IS INTEGRATED
   def write_link_to_database(value)
     @db.execute('INSERT INTO links (link) VALUES (?)', [value])
   end
