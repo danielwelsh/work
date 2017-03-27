@@ -1,32 +1,32 @@
 class CreateBaseSchema < ActiveRecord::Migration
   def change
     create_table :rooms do |t|
-      t.string :level
-      t.string :room_type
-      t.string :dimension
+      t.text :level
+      t.text :room_type
+      t.text :dimension
 
       t.timestamps(null: false)
     end
 
     create_table :houses do |t|
-      t.string :mls_listing_id
+      t.text :mls_listing_id
       t.integer :property_price
-      t.string :street
-      t.string :status
+      t.text :street
+      t.text :status
       t.integer :bedrooms
       t.integer :bathrooms
       t.integer :sq_feet
       t.integer :days_on_market
-      t.string :amenities
-      t.string :balcony
+      t.text :amenities
+      t.text :balcony
       t.integer :age_of_building
-      t.string :parking_type
-      t.string :heating
-      t.string :basement
-      t.string :exterior
-      t.string :flooring
-      t.string :roofing
-      t.string :property_description
+      t.text :parking_type
+      t.text :heating
+      t.text :basement
+      t.text :exterior
+      t.text :flooring
+      t.text :roofing
+      t.text :property_description
       t.integer :agent_id
       t.integer :community_id
       t.integer :building_type_id
@@ -39,43 +39,43 @@ class CreateBaseSchema < ActiveRecord::Migration
     end
 
     create_table :provinces do |t|
-      t.string :name
+      t.text :name
 
       t.timestamps(null: false)
     end
 
     create_table :cities do |t|
-      t.string :name
+      t.text :name
 
       t.timestamps(null: false)
     end
 
     create_table :postal_codes do |t|
-      t.string :code
+      t.text :code
 
       t.timestamps(null: false)
     end
 
     create_table :agents do |t|
-      t.string :name
+      t.text :name
 
       t.timestamps(null: false)
     end
 
     create_table :communities do |t|
-      t.string :name
+      t.text :name
 
       t.timestamps(null: false)
     end
 
     create_table :building_types do |t|
-      t.string :name
+      t.text :name
 
       t.timestamps(null: false)
     end
 
     create_table :links do |t|
-      t.string :url
+      t.text :url
 
       t.timestamps(null: false)
     end

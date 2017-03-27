@@ -52,7 +52,7 @@ class ListingScraper
     left_column = ''
     left_column = @main_doc.css("ul[class='leftColumn']")
     if item_found?(left_column)
-      @args[format_sym(left_column[0].children[1].children.children[0].text).to_sym] = format_sym(left_column[0].children[1].children.children[1].text).to_s
+      @args[:building_type] = format_sym(left_column[0].children[1].children.children[1].text).to_s
     end
   end
 
@@ -60,7 +60,7 @@ class ListingScraper
     left_column = ''
     left_column = @main_doc.css("ul[class='leftColumn']")
     if item_found?(left_column)
-      @args[format_sym(left_column[0].children[3].children.children[0].text).to_sym] = format_sym(left_column[0].children[3].children.children[1].text).to_i
+      @args[:bedrooms] = format_sym(left_column[0].children[3].children.children[1].text).to_i
     end
   end
 
@@ -68,15 +68,15 @@ class ListingScraper
     left_column = ''
     left_column = @main_doc.css("ul[class='leftColumn']")
     if item_found?(left_column)
-      @args[format_sym(left_column[0].children[5].children.children[0].text).to_sym] = format_sym(left_column[0].children[5].children.children[1].text).to_i
+      @args[:bathrooms] = format_sym(left_column[0].children[5].children.children[1].text).to_i
     end
   end
 
-  def living_space
+  def sq_feet
     left_column = ''
     left_column = @main_doc.css("ul[class='leftColumn']")
     if item_found?(left_column)
-      @args[format_sym(left_column[0].children[7].children.children[0].text).to_sym] = format_sym(left_column[0].children[7].children.children[1].text).to_i
+      @args[:sq_feet] = format_sym(left_column[0].children[7].children.children[1].text).to_i
     end
   end
 
@@ -84,7 +84,7 @@ class ListingScraper
     right_column = ''
     right_column = @main_doc.css("ul[class='rightColumn']")
     if item_found?(right_column)
-      @args[format_sym(right_column[0].children[1].children.children[0].text).to_sym] = (right_column[0].children[1].children.children[1].text).downcase
+      @args[:status] = (right_column[0].children[1].children.children[1].text).downcase
     end
   end
 
@@ -92,7 +92,7 @@ class ListingScraper
     right_column = ''
     right_column = @main_doc.css("ul[class='rightColumn']")
     if item_found?(right_column)
-      @args[format_sym(right_column[0].children[3].children.children[0].text).to_sym] = format_sym(right_column[0].children[3].children.children[1].text).to_i
+      @args[:days_on_market] = format_sym(right_column[0].children[3].children.children[1].text).to_i
     end
   end
 
@@ -100,7 +100,7 @@ class ListingScraper
     right_column = ''
     right_column = @main_doc.css("ul[class='rightColumn']")
     if item_found?(right_column)
-      @args[format_sym(right_column[0].children[5].children.children[0].text).to_sym] = format_sym(right_column[0].children[5].children.children[1].text).to_i
+      @args[:age_of_building] = format_sym(right_column[0].children[5].children.children[1].text).to_i
     end
   end
 
@@ -108,7 +108,7 @@ class ListingScraper
     right_column = ''
     right_column = @main_doc.css("ul[class='rightColumn']")
     if item_found?(right_column)
-      @args[format_sym(right_column[0].children[7].children.children[0].text).to_sym] = (right_column[0].children[7].children.children[1].text).downcase
+      @args[:parking_type] = (right_column[0].children[7].children.children[1].text).downcase
     end
   end
 
@@ -118,7 +118,7 @@ class ListingScraper
     if item_found?(left_column)
       left_column = left_column.css("div[id='detailsList']")
       left_column = left_column.css("ul[class='leftColumn']")
-      @args[format_sym(left_column[0].children[1].children.children[0].text).to_sym] = (left_column[0].children[1].children.children[1].text).downcase
+      @args[:heating] = (left_column[0].children[1].children.children[1].text).downcase
     end
   end
 
@@ -128,7 +128,7 @@ class ListingScraper
     if item_found?(left_column)
       left_column = left_column.css("div[id='detailsList']")
       left_column = left_column.css("ul[class='leftColumn']")
-      @args[format_sym(left_column[0].children[3].children.children[0].text).to_sym] = (left_column[0].children[3].children.children[1].text).downcase
+      @args[:community] = (left_column[0].children[3].children.children[1].text).downcase
     end
   end
 
@@ -138,7 +138,7 @@ class ListingScraper
     if item_found?(left_column)
       left_column = left_column.css("div[id='detailsList']")
       left_column = left_column.css("ul[class='leftColumn']")
-      @args[format_sym(left_column[0].children[5].children.children[0].text).to_sym] = (left_column[0].children[5].children.children[1].text).downcase
+      @args[:amenities] = (left_column[0].children[5].children.children[1].text).downcase
     end
   end
 
@@ -148,7 +148,7 @@ class ListingScraper
     if item_found?(left_column)
       left_column = left_column.css("div[id='detailsList']")
       left_column = left_column.css("ul[class='leftColumn']")
-      @args[format_sym(left_column[0].children[7].children.children[0].text).to_sym] = (left_column[0].children[7].children.children[1].text).downcase
+      @args[:balcony] = (left_column[0].children[7].children.children[1].text).downcase
     end
   end
 
@@ -158,7 +158,7 @@ class ListingScraper
     if item_found?(right_column)
       right_column = right_column.css("div[id='detailsList']")
       right_column = right_column.css("ul[class='rightColumn']")
-      @args[format_sym(right_column[0].children[1].children.children[0].text).to_sym] = (right_column[0].children[1].children.children[1].text).downcase
+      @args[:basement] = (right_column[0].children[1].children.children[1].text).downcase
     end
   end
 
@@ -168,7 +168,7 @@ class ListingScraper
     if item_found?(right_column)
       right_column = right_column.css("div[id='detailsList']")
       right_column = right_column.css("ul[class='rightColumn']")
-      @args[format_sym(right_column[0].children[3].children.children[0].text).to_sym] = (right_column[0].children[3].children.children[1].text).downcase
+      @args[:exterior] = (right_column[0].children[3].children.children[1].text).downcase
     end
   end
 
@@ -178,7 +178,7 @@ class ListingScraper
     if item_found?(right_column)
       right_column = right_column.css("div[id='detailsList']")
       right_column = right_column.css("ul[class='rightColumn']")
-      @args[format_sym(right_column[0].children[5].children.children[0].text).to_sym] = (right_column[0].children[5].children.children[1].text).downcase
+      @args[:flooring] = (right_column[0].children[5].children.children[1].text).downcase
     end
   end
 
@@ -188,7 +188,7 @@ class ListingScraper
     if item_found?(right_column)
       right_column = right_column.css("div[id='detailsList']")
       right_column = right_column.css("ul[class='rightColumn']")
-      @args[format_sym(right_column[0].children[7].children.children[0].text).to_sym] = (right_column[0].children[7].children.children[1].text).downcase
+      @args[:roofing] = (right_column[0].children[7].children.children[1].text).downcase
     end
   end
 
@@ -196,7 +196,7 @@ class ListingScraper
     property_description = ''
     property_description = @main_doc.css("div[class='property-description-details']")
     if item_found?(property_description)
-      @args[format_sym((property_description.css("h4").text)).to_sym] = property_description.css("p[class='descriptionText descText']").children.text
+      @args[:property_description] = property_description.css("p[class='descriptionText descText']").children.text
     end
   end
 
@@ -250,7 +250,7 @@ class ListingScraper
     status
     bedrooms
     bathrooms
-    living_space
+    sq_feet
     days_on_market
     amenities
     balcony
