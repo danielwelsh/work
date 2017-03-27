@@ -50,7 +50,7 @@ private
 
   def over_1000?
     lines = read_from_database
-    return true if lines.length >= 1000
+    return true if lines.length >= 10
     false
   end
 

@@ -39,13 +39,13 @@ class CreateBaseSchema < ActiveRecord::Migration
     end
 
     create_table :provinces do |t|
-      t.text :name
+      t.text :name_province
 
       t.timestamps(null: false)
     end
 
     create_table :cities do |t|
-      t.text :name
+      t.text :name_city
 
       t.timestamps(null: false)
     end
@@ -57,19 +57,19 @@ class CreateBaseSchema < ActiveRecord::Migration
     end
 
     create_table :agents do |t|
-      t.text :name
+      t.text :name_agent
 
       t.timestamps(null: false)
     end
 
     create_table :communities do |t|
-      t.text :name
+      t.text :name_community
 
       t.timestamps(null: false)
     end
 
     create_table :building_types do |t|
-      t.text :name
+      t.text :name_building_type
 
       t.timestamps(null: false)
     end

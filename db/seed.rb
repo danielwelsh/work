@@ -16,8 +16,6 @@ links.each do |link|
   listing = ListingScraper.new(link[1])
   listing.scrape
   house = House.new(listing.args)
-  house.write_to_houses
-  p house.read_from_database
 end
 
 LinkCrawler.new('https://www.remax.ca/ab/edmonton-real-estate/na-1902-9923-103-street-na-wp_id167819998-lst/')
@@ -26,7 +24,15 @@ links = LinkCrawler.found_links
 
 links.each do |link|
   listing = ListingScraper.new(link)
-  listing.scrape
-  listing.args
+  listing.run
+  args = listing.args
+
+  Agent.create(args)
+  BuildingType.create(args)
+  City.create(args)
+  Province.create(args)
+  Community.create(args)
+  PostalCode.create(args)
+  House.create(args)
 end
 

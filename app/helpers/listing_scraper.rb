@@ -17,6 +17,14 @@ class ListingScraper
     @main_doc = @doc.css("div[class='listing-details-box propertyDetails contentArea']")
   end
 
+  def run
+    scrape
+    populate_ids
+  end
+
+
+
+private
   def mls_listing_id
     id = @doc.css("span[class='MLS']").text
     if item_found?(id)
@@ -31,9 +39,9 @@ class ListingScraper
       address = address.children.text
       address = format_address(address)
       @args[:street] = address[0]
-      @args[:city] = address[1]
-      @args[:province] = address[2]
-      @args[:postal_code] = address[3]
+      @args[:name_city] = address[1]
+      @args[:name_province] = address[2]
+      @args[:code] = address[3]
     end
   end
 
@@ -52,7 +60,7 @@ class ListingScraper
     left_column = ''
     left_column = @main_doc.css("ul[class='leftColumn']")
     if item_found?(left_column)
-      @args[:building_type] = format_sym(left_column[0].children[1].children.children[1].text).to_s
+      @args[:name_building_type] = format_sym(left_column[0].children[1].children.children[1].text).to_s
     end
   end
 
@@ -122,13 +130,13 @@ class ListingScraper
     end
   end
 
-  def community
+  def name_community
     left_column = ''
     left_column = @main_doc.css("div[class='propertyDetailsComponents']")
     if item_found?(left_column)
       left_column = left_column.css("div[id='detailsList']")
       left_column = left_column.css("ul[class='leftColumn']")
-      @args[:community] = (left_column[0].children[3].children.children[1].text).downcase
+      @args[:name_community] = (left_column[0].children[3].children.children[1].text).downcase
     end
   end
 
@@ -200,12 +208,12 @@ class ListingScraper
     end
   end
 
-  def listing_agent
+  def name_agent
     agent = ''
     agent = @main_doc.css("div[class='property-description-details']")
     if item_found?(agent)
       agent = agent.css("p[class='descriptionText courtesy']").children.text
-      @args[:listing_agent] = agent
+      @args[:name_agent] = agent
     end
   end
 
@@ -258,7 +266,7 @@ class ListingScraper
     parking_type
     heating
     basement
-    community
+    name_community
     exterior
     flooring
     roofing
@@ -267,6 +275,15 @@ class ListingScraper
     room_details
     mls_listing_id
     address
+    name_agent
+  end
+
+  def populate_ids
+    @args[:agent_id] = find_by(name_agent: listing.args.name_agent).id
+    @args[:building_type_id] = find_by(name_building_type: listing.args.name_building_type).id
+    @args[:province_id] = find_by(name_province: listing.args.name_province).id
+    @args[:city_id] = find_by(name_city: listing.args.name_city).id
+    @args[:postal_code_id] = find_by(code: listing.args.code).id
   end
 
 end
