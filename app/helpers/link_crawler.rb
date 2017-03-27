@@ -31,28 +31,27 @@ class LinkCrawler
     end
 
     index += 1
+
+    #Currently limiting the amount of time
     return false if over_1000?
     find_links(@found_links[index], index, no_new_links)
   end
 
 
+
+
+
+
+private
   def concatenate_prefix(link)
     link = 'https://www.remax.ca' + link
   end
+
 
   def over_1000?
     lines = read_from_database
     return true if lines.length >= 1000
     false
-  end
-
-#THIS SECTION WILL BE REWRITTEN ONCE ACTIVE RECORD IS INTEGRATED
-  def write_link_to_database(value)
-    @db.execute('INSERT INTO links (link) VALUES (?)', [value])
-  end
-
-  def read_from_database
-    @db.execute('SELECT * FROM links')
   end
 
 

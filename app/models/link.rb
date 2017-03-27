@@ -1,3 +1,9 @@
 class Link < ActiveRecord::Base
-  # Remember to create a migration!
+  require_relative '../helpers/link_crawler'
+
+  def find_links(link)
+    LinkCrawler.find_links(link)
+  end
+
+
 end

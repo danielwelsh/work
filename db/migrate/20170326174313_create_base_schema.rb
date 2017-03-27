@@ -12,13 +12,13 @@ class CreateBaseSchema < ActiveRecord::Migration
       t.string :mls_listing_id
       t.integer :property_price
       t.string :street
-      t.status :status
+      t.string :status
       t.integer :bedrooms
       t.integer :bathrooms
       t.integer :sq_feet
       t.integer :days_on_market
       t.string :amenities
-      t.boolean :balcony
+      t.string :balcony
       t.integer :age_of_building
       t.string :parking_type
       t.string :heating

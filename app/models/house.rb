@@ -58,15 +58,6 @@ class House
     end
   end
 
-  def write_to_houses
-    if this_a_house?
-        @db.execute("INSERT INTO houses (id, list_price, currency, mls_listing_id, building_type, status, bedrooms, bathrooms, living_space, days_on_market, amenities, balcony, age_of_building, parking_type, heating, basement, community, exterior, flooring, roofing, property_description, listing_agent, street, city, province, postal_code, created_at, modified_at) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [@id, @listing_price, @currency, @mls_listing_id, @building_type, @status, @bedrooms, @bathrooms, @living_space, @days_on_market, @amenities, @balcony, @age_of_building, @parking_type, @heating, @basement, @community, @exterior, @flooring, @roofing, @property_description, @listing_agent, @street, @city, @province, @postal_code, @initalize_time, @initalize_time])
-    end
-  end
-
-  def read_from_database
-    @db.execute("select * from houses")
-  end
 
 
   #FIXME create rooms integration
