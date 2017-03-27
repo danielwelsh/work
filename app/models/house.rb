@@ -1,4 +1,13 @@
-require "sqlite3"
+class House < ActiveRecord::Base
+  belongs_to :postal_code
+  belongs_to :agent
+  belongs_to :building_type
+  belongs_to :city
+  belongs_to :community
+  belongs_to :province
+  has_many :rooms
+
+  require "sqlite3"
 require "date"
 require_relative "room"
 
@@ -75,5 +84,7 @@ class House
 
 
 
+
+end
 
 end

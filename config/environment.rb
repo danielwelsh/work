@@ -3,6 +3,8 @@ require "active_record"
 require "rake"
 require "sqlite3"
 require "pathname"
+require "open-uri"
+require "nokogiri"
 
 
 # Identify the root directory for the application

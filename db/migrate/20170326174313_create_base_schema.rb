@@ -74,6 +74,11 @@ class CreateBaseSchema < ActiveRecord::Migration
       t.timestamps(null: false)
     end
 
+    create_table :links do |t|
+      t.string :url
+
+      t.timestamps(null: false)
+    end
 
   end
 end
