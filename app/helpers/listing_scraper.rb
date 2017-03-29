@@ -5,6 +5,8 @@
 # require 'sqlite3'
 require_relative '../helpers/formating_module'
 
+#FIXME Room scraper should break the dimensions into x and y coordinates, then that data should be altered with a migration to reflect the x and y
+
 #FIXME ADD BACK BOOLEAN TEST to basement exterior and flooring
 # https://www.remax.ca/ab/edmonton-real-estate/na-1902-9923-103-street-na-wp_id167819998-lst/
 class ListingScraper
@@ -18,7 +20,7 @@ class ListingScraper
     @main_doc = @doc.css("div[class='listing-details-box propertyDetails contentArea']")
   end
 
-  def run
+  def get
     scrape
     populate_ids
   end
@@ -235,7 +237,7 @@ private
         end
 
         details[:level] = @proper_level
-        details[:room_name] = row.children[3].text
+        details[:name_room_type] = row.children[3].text
         details[:dimension] = row.children[5].text
         rows_info << details
       end
@@ -278,12 +280,5 @@ private
     name_agent
   end
 
-  def populate_ids
-    @args[:agent_id] = Agent.find_by("name_agent = '#{@args[:name_agent]}'").id
-    @args[:building_type_id] = BuildingType.find_by("name_building_type = '#{@args[:name_building_type]}'").id
-    @args[:province_id] = Province.find_by("name_province = '#{@args[:name_province]}'").id
-    @args[:city_id] = City.find_by("name_city = '#{@args[:name_city]}'").id
-    @args[:postal_code_id] = PostalCode.find_by("code = '#{@args[:code]}'").id
-  end
 
 end

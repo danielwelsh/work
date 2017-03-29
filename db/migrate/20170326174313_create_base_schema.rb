@@ -3,8 +3,8 @@ class CreateBaseSchema < ActiveRecord::Migration
     create_table :houses_rooms do |t|
       t.text :level
       t.text :dimension
-      t.references :RoomType
-      t.references :House
+      t.references :roomtype
+      t.references :house
 
       t.timestamps(null: false)
     end
@@ -36,10 +36,10 @@ class CreateBaseSchema < ActiveRecord::Migration
       t.text :property_description
       t.references :agent
       t.references :community
-      t.references :buildingType
+      t.references :buildingtype
       t.references :province
       t.references :city
-      t.references :postalCode
+      t.references :postalcode
 
       t.timestamps(null: false)
     end

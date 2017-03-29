@@ -32,10 +32,10 @@ class House < ActiveRecord::Base
     clean[:property_description] = params[:property_description]
     clean[:agent]                = Agent.find_by(name_agent: params[:name_agent]).id
     clean[:community]            = Community.find_by(name_community: params[:name_community]).id
-    clean[:buildingType]         = BuildingType.find_by(name_building_type: params[:name_building_type]).id
+    clean[:buildingtype]         = BuildingType.find_by(name_building_type: params[:name_building_type]).id
     clean[:province]             = Province.find_by(name_province: params[:name_province]).id
     clean[:city]                 = City.find_by(name_city: params[:name_city]).id
-    clean[:postalCode]           = PostalCode.find_by(code: params[:code]).id
+    clean[:postalcode]           = PostalCode.find_by(code: params[:code]).id
     clean
   end
 
