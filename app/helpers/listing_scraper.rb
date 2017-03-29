@@ -20,6 +20,7 @@ class ListingScraper
 
   def run
     scrape
+    populate_ids
   end
 
 

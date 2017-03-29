@@ -19,16 +19,14 @@ links = crawler.found_links
 links.each do |link|
   listing = ListingScraper.new(link)
   listing.run
-  args = listing.args
+  params = listing.args
 
-  Agent.create(args)
-  BuildingType.create(args)
-  City.create(args)
-  Province.create(args)
-  Community.create(args)
-  PostalCode.create(args)
-  listing.populate_ids
-  args = listing.args
+  City.create(City.cleaner(params))
+  Agent.create(Agent.cleaner(params))
+  BuildingType.create(BuildingType.cleaner(params))
+  Province.create(Province.cleaner(params))
+  Community.create(Community.cleaner(params))
+  PostalCode.create(PostalCode.cleaner(params))
   House.create(args)
 end
 

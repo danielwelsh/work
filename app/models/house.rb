@@ -12,6 +12,35 @@ class House < ActiveRecord::Base
 
 
 
+  def self.cleaner(params)
+    clean = {}
+    clean[:mls_listing_id]       = params[:mls_listing_id]
+    clean[:property_price]       = params[:property_price]
+    clean[:street]               = params[:street]
+    clean[:status]               = params[:status]
+    clean[:bedrooms]             = params[:bedrooms]
+    clean[:bathrooms]            = params[:bathrooms]
+    clean[:sq_feet]              = params[:sq_feet]
+    clean[:days_on_market]       = params[:days_on_market]
+    clean[:amenities]            = params[:amenities]
+    clean[:parking_type]         = params[:parking_type]
+    clean[:heating]              = params[:heating]
+    clean[:basement]             = params[:basement]
+    clean[:exterior]             = params[:exterior]
+    clean[:flooring]             = params[:flooring]
+    clean[:roofing]              = params[:roofing]
+    clean[:property_description] = params[:property_description]
+    clean[:agent]                = Agent.find_by(name_agent: params[:name_agent]).id
+    clean[:community]            = Community.find_by(name_community: params[:name_community]).id
+    clean[:buildingType]         = BuildingType.find_by(name_building_type: params[:name_building_type]).id
+    clean[:province]             = Province.find_by(name_province: params[:name_province]).id
+    clean[:city]                 = City.find_by(name_city: params[:name_city]).id
+    clean[:postalCode]           = PostalCode.find_by(code: params[:code]).id
+    clean
+  end
+
+
+
 end
 
 
