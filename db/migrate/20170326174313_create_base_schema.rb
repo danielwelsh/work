@@ -1,9 +1,16 @@
 class CreateBaseSchema < ActiveRecord::Migration
   def change
-    create_table :rooms do |t|
+    create_table :houses_rooms do |t|
       t.text :level
-      t.text :room_type
       t.text :dimension
+      t.references :RoomType
+      t.references :House
+
+      t.timestamps(null: false)
+    end
+
+    create_table :room_types do |t|
+      t.text :name_room_type
 
       t.timestamps(null: false)
     end
@@ -27,12 +34,12 @@ class CreateBaseSchema < ActiveRecord::Migration
       t.text :flooring
       t.text :roofing
       t.text :property_description
-      t.integer :agent_id
-      t.integer :community_id
-      t.integer :building_type_id
-      t.integer :province_id
-      t.integer :city_id
-      t.integer :postal_code_id
+      t.references :Agent
+      t.references :Community
+      t.references :BuildingType
+      t.references :Province
+      t.references :City
+      t.references :PostalCode
 
       t.timestamps(null: false)
 
@@ -79,6 +86,8 @@ class CreateBaseSchema < ActiveRecord::Migration
 
       t.timestamps(null: false)
     end
+
+
 
   end
 end

@@ -1,8 +1,9 @@
-require_relative 'house'
-require 'nokogiri'
-require 'open-uri'
-require_relative 'formating_module'
-require 'sqlite3'
+# require_relative 'house'
+# require 'nokogiri'
+# require 'open-uri'
+# require_relative 'formating_module'
+# require 'sqlite3'
+require_relative '../helpers/formating_module'
 
 #FIXME ADD BACK BOOLEAN TEST to basement exterior and flooring
 # https://www.remax.ca/ab/edmonton-real-estate/na-1902-9923-103-street-na-wp_id167819998-lst/
@@ -19,7 +20,6 @@ class ListingScraper
 
   def run
     scrape
-    populate_ids
   end
 
 
@@ -271,7 +271,6 @@ private
     flooring
     roofing
     property_description
-    listing_agent
     room_details
     mls_listing_id
     address
@@ -279,11 +278,11 @@ private
   end
 
   def populate_ids
-    @args[:agent_id] = find_by(name_agent: listing.args.name_agent).id
-    @args[:building_type_id] = find_by(name_building_type: listing.args.name_building_type).id
-    @args[:province_id] = find_by(name_province: listing.args.name_province).id
-    @args[:city_id] = find_by(name_city: listing.args.name_city).id
-    @args[:postal_code_id] = find_by(code: listing.args.code).id
+    @args[:agent_id] = Agent.find_by("name_agent = '#{@args[:name_agent]}'").id
+    @args[:building_type_id] = BuildingType.find_by("name_building_type = '#{@args[:name_building_type]}'").id
+    @args[:province_id] = Province.find_by("name_province = '#{@args[:name_province]}'").id
+    @args[:city_id] = City.find_by("name_city = '#{@args[:name_city]}'").id
+    @args[:postal_code_id] = PostalCode.find_by("code = '#{@args[:code]}'").id
   end
 
 end

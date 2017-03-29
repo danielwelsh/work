@@ -1,8 +1,8 @@
-require_relative 'house'
-require 'nokogiri'
-require 'open-uri'
-require_relative 'formating_module'
-require 'sqlite3'
+# require_relative 'house'
+# require 'nokogiri'
+# require 'open-uri'
+require_relative '../helpers/formating_module'
+# require 'sqlite3'
 
 class LinkCrawler
   attr_reader :found_links
