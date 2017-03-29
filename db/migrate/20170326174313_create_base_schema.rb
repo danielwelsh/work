@@ -34,15 +34,14 @@ class CreateBaseSchema < ActiveRecord::Migration
       t.text :flooring
       t.text :roofing
       t.text :property_description
-      t.references :Agent
-      t.references :Community
-      t.references :BuildingType
-      t.references :Province
-      t.references :City
-      t.references :PostalCode
+      t.references :agent
+      t.references :community
+      t.references :buildingType
+      t.references :province
+      t.references :city
+      t.references :postalCode
 
       t.timestamps(null: false)
-
     end
 
     create_table :provinces do |t|

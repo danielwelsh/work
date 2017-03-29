@@ -5,6 +5,7 @@ class House < ActiveRecord::Base
   belongs_to :city
   belongs_to :community
   belongs_to :province
+  has_many :houses_rooms
   has_many :room_types, :through => :houses_rooms
 
   validates_uniqueness_of :mls_listing_id
@@ -14,7 +15,7 @@ class House < ActiveRecord::Base
 end
 
 
-#   require "sqlite3"
+# require "sqlite3"
 # require "date"
 # require_relative "room"
 
