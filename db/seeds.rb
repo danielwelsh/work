@@ -22,11 +22,6 @@ links.each do |link|
   listing.get
   params = listing.args
 
-  params[:room_details].each do |room|
-    RoomType.create(RoomType.cleaner(params))
-    clean
-    HousesRooms.create(HousesRooms.cleaner(params))
-  end
 
   City.create(City.cleaner(params))
   Agent.create(Agent.cleaner(params))
@@ -36,5 +31,11 @@ links.each do |link|
   PostalCode.create(PostalCode.cleaner(params))
 
   House.create(House.cleaner(params))
-end
+  p '*' * 100
+  p params[:room_details]
+  params[:room_details].each do |room|
+    RoomType.create(RoomType.cleaner(params))
+    HousesRooms.create(HousesRooms.cleaner(params))
+  end
 
+end

@@ -22,7 +22,6 @@ class ListingScraper
 
   def get
     scrape
-    populate_ids
   end
 
 

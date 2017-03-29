@@ -36,10 +36,10 @@ class CreateBaseSchema < ActiveRecord::Migration
       t.text :property_description
       t.references :agent
       t.references :community
-      t.references :buildingtype
+      t.references :buildingtype, references: :BuildingType
       t.references :province
       t.references :city
-      t.references :postalcode
+      t.references :postalcode, references: :PostalCode
 
       t.timestamps(null: false)
     end
